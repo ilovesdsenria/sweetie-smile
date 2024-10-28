@@ -15,7 +15,7 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
-            background-image: url('imagies/background.jpg');
+            background-image: url('images/background.jpg');
             background-size: cover;
             background-position: center;
             color: white;
@@ -53,6 +53,10 @@
             background-color: #1E90FF;
             color: white;
         }
+        .gallery-button {
+            background-color: #32CD32; 
+            color: white;
+        }
         select {
             padding: 10px;
             margin-top: 10px;
@@ -88,20 +92,20 @@
         /* Media Queries for mobile responsiveness */
         @media (max-width: 600px) {
             h1 {
-                font-size: 24px; /* Smaller heading */
+                font-size: 24px; 
             }
             button, select {
-                font-size: 16px; /* Smaller button and select size */
-                padding: 8px 16px; /* Smaller padding */
+                font-size: 16px; 
+                padding: 8px 16px; 
             }
             .quote, .compliment-display, .fact-display {
-                font-size: 16px; /* Smaller text for quotes and compliments */
+                font-size: 16px; 
             }
         }
     </style>
 </head>
 <body>
-<h1>Может это чем-то поможет?....</h1>
+<h1>Heyyy sweetie!!</h1>
 <div class="giphy-container">
     <img src="https://media.giphy.com/media/0OgdJVNjbcIifqSb7U/giphy.gif" alt="Back" style="width: 200px; height: 200px;">
 </div>
@@ -121,14 +125,13 @@
 <button onclick="playSelectedSong()" class="music-button">Play Selected Song</button>
 <button onclick="stopMusic()" class="music-button">Stop Music</button>
 
-<!-- Play background music by default -->
 <audio id="selectedSong" loop></audio>
 
-<!-- Button to show random fun fact -->
 <button onclick="showRandomFact()" class="compliment-button">Покажи забавный факт</button>
 <div class="fact-display" id="factDisplay"></div>
 
-<button class="back-button" onclick="goBack()" alt="Back">Back</button>
+<button class="gallery-button" onclick="goToGallery()">Перейти в галерею</button>
+
 
 <script>
     let compliments = [];
@@ -140,7 +143,6 @@
         "A day on Venus is longer than a year on Venus!"
     ];
 
-    // Fetch compliments from JSON file
     fetch('compliments.json')
         .then(response => response.json())
         .then(data => {
@@ -155,27 +157,26 @@
         "Don't be pushed around by the fears in your mind. Be led by the dreams in your heart."
     ];
 
-    // Display a random quote
     const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
     document.getElementById('quoteContainer').textContent = randomQuote;
 
     function showRandomCompliment() {
         if (compliments.length === 0) {
             document.getElementById('complimentDisplay').textContent = "Compliments are loading, please try again!";
-            document.getElementById('complimentDisplay').style.display = "block"; // Show the message
+            document.getElementById('complimentDisplay').style.display = "block"; 
             return;
         }
         const randomCompliment = compliments[Math.floor(Math.random() * compliments.length)];
         const complimentDisplay = document.getElementById('complimentDisplay');
-        complimentDisplay.textContent = randomCompliment; // Display compliment in div
-        complimentDisplay.style.display = "block"; // Show the compliment
+        complimentDisplay.textContent = randomCompliment; 
+        complimentDisplay.style.display = "block";
     }
 
     function playSelectedSong() {
         const selectedSong = document.getElementById('songSelect').value;
         const music = document.getElementById('selectedSong');
         if (selectedSong) {
-            music.src = selectedSong; // Set the source to the selected song
+            music.src = selectedSong;
             music.play();
         } else {
             alert("Please select a song first!");
@@ -184,19 +185,23 @@
 
     function stopMusic() {
         const music = document.getElementById('selectedSong');
-        music.pause(); // Pause the currently playing song
-        music.src = ''; // Reset the source to stop any sound
+        music.pause(); 
+        music.src = ''; 
     }
 
     function showRandomFact() {
         const randomFact = facts[Math.floor(Math.random() * facts.length)];
         const factDisplay = document.getElementById('factDisplay');
-        factDisplay.textContent = randomFact; // Display fact in div
-        factDisplay.style.display = "block"; // Show the fact
+        factDisplay.textContent = randomFact; 
+        factDisplay.style.display = "block"; 
     }
 
     function goBack() {
         window.location.href = 'second.html';
+    }
+
+    function goToGallery() {
+        window.location.href = 'gallery.html'; 
     }
 </script>
 </body>
